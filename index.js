@@ -1,67 +1,47 @@
-// 1.первая задача
-let name = 'Alex';
-let account = 7777;
-let money = 10000;
-let amount = 5000; 
+// Первая задача
+let user = 'Alex'; 
+let money = 10000;   
+let account = '7777'; 
 
-if (name === 'Alex') {
-  if (account === 7777) {
-    if (money >= amount) {
-      console.log('Все отлично');
-      console.log('Сняли: ' + amount);
-      console.log('Осталось: ' + (money - amount));
-    } else {
-      console.log('Недостаточно средств');
-    }
+let inputName = prompt("Введите ваше имя");
+
+let inputPassword = prompt("Введите пароль");
+
+if (inputName === user && inputPassword === account) {
+  console.log('Пароль правильный!');
+  
+  let amountToWithdraw = parseInt(prompt("Сколько денег хотите снять?"));
+
+  if (money >= amountToWithdraw) {
+    money -= amountToWithdraw;  
+    console.log(`Вы сняли: ${amountToWithdraw}$. Осталось: ${money}$`);
   } else {
-    console.log('Неверный номер счета');
+    console.log('Недостаточно средств!');
   }
 } else {
-  console.log('Пользователь не найден, досвидули');
+  console.log('Неверное имя или пароль!');
 }
 
-// 2.вторая задача
-let people = [
-    { name: 'Alex', age: 25, cash: 150 },
-    { name: 'Bob', age: 30, cash: 90 },
-    { name: 'Anna', age: 35, cash: 200 },
-    { name: 'Andrew', age: 19, cash: 500 },
-    { name: 'Alice', age: 41, cash: 120 }
-  ];
+
+// Вторая задача
+let count = 0;
+let numberOfPeople = parseInt(prompt("Сколько человек хочет зайти в клуб?"));  
+
+for (let i = 0; i < numberOfPeople; i++) {
+let name = prompt("Как вас зовут?");
+let age = parseInt(prompt("Сколько вам лет?"));
+let cash = parseInt(prompt("Сколько у вас денег?"));
   
-  let count = 0;
-  
-  people.forEach(function(person) {
-    let nameStartsWithA = person.name[0] === 'A' || person.name[0] === 'a';
-    let ageOk = person.age > 20 && person.age <= 40;
-    let hasMoney = person.cash > 100;
-  
-    if (nameStartsWithA && ageOk && hasMoney) {
-      console.log(person.name + ' прошёл в клуб');
-      count++;
-    } else {
-      console.log(person.name + ' не прошёл');
-    }
-  });
-  
-  console.log('Всего зашло в клуб: ' + count);
-  
+let nameStartsWithA = name[0] === 'A' || name[0] === 'a';  
+let ageOk = age > 20 && age <= 40;  
+let hasMoney = cash > 100;  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+if (nameStartsWithA && ageOk && hasMoney) {
+console.log(name + ' прошёл в клуб');
+count++;
+} else {
+console.log(name + ' не прошёл');
+}
+}
+console.log('Всего зашло в клуб: ' + count);
 
