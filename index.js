@@ -1,47 +1,67 @@
-// Первая задача
-let user = 'Alex'; 
-let money = 10000;   
-let account = '7777'; 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Банкомат и Клуб</title>
+</head>
+<body>
+  <script>
+    // Первая задача — Банкомат
+    const userData = {
+      username: "Alex",
+      password: "7777",
+      balance: 10000,
+    };
 
-let inputName = prompt("Введите ваше имя");
+    const inputName = prompt("Введите ваше имя");
+    const inputPassword = prompt("Введите пароль");
 
-let inputPassword = prompt("Введите пароль");
+    if (inputName === userData.username && inputPassword === userData.password) {
+      alert("Пароль правильный!");
+      const amount = parseInt(prompt("Сколько денег хотите снять?"));
 
-if (inputName === user && inputPassword === account) {
-  console.log('Пароль правильный!');
-  
-  let amountToWithdraw = parseInt(prompt("Сколько денег хотите снять?"));
+      if (!isNaN(amount) && amount > 0 && amount <= userData.balance) {
+        userData.balance -= amount;
+        alert("Вы сняли " + amount + "$. Осталось: " + userData.balance + "$.");
+      } else {
+        alert("Недостаточно средств или введена неверная сумма!");
+      }
+    } else {
+      alert("Неверное имя или пароль!");
+    }
 
-  if (money >= amountToWithdraw) {
-    money -= amountToWithdraw;  
-    console.log(`Вы сняли: ${amountToWithdraw}$. Осталось: ${money}$`);
-  } else {
-    console.log('Недостаточно средств!');
-  }
-} else {
-  console.log('Неверное имя или пароль!');
-}
+    // Вторая задача — Клуб
+    let passedCount = 0;
+    const totalPeopleRaw = prompt("Сколько человек хочет зайти в клуб?");
+    const totalPeople = parseInt(totalPeopleRaw);
 
+    if (!isNaN(totalPeople) && totalPeople > 0) {
+      for (let i = 0; i < totalPeople; i++) {
+        const name = prompt("Как вас зовут?");
+        const age = parseInt(prompt("Сколько вам лет?"));
+        const cash = parseInt(prompt("Сколько у вас денег?"));
 
-// Вторая задача
-let count = 0;
-let numberOfPeople = parseInt(prompt("Сколько человек хочет зайти в клуб?"));  
+        let nameStartsWithA = false;
+        if (typeof name === "string" && name.length > 0) {
+          const firstLetter = name.charAt(0);
+          nameStartsWithA = firstLetter === "A" || firstLetter === "a";
+        }
 
-for (let i = 0; i < numberOfPeople; i++) {
-let name = prompt("Как вас зовут?");
-let age = parseInt(prompt("Сколько вам лет?"));
-let cash = parseInt(prompt("Сколько у вас денег?"));
-  
-let nameStartsWithA = name[0] === 'A' || name[0] === 'a';  
-let ageOk = age > 20 && age <= 40;  
-let hasMoney = cash > 100;  
+        const ageOk = !isNaN(age) && age > 20 && age <= 40;
+        const moneyOk = !isNaN(cash) && cash > 100;
 
-if (nameStartsWithA && ageOk && hasMoney) {
-console.log(name + ' прошёл в клуб');
-count++;
-} else {
-console.log(name + ' не прошёл');
-}
-}
-console.log('Всего зашло в клуб: ' + count);
+        if (nameStartsWithA && ageOk && moneyOk) {
+          alert(name + " прошёл в клуб!");
+          passedCount++;
+        } else {
+          alert((name ? name : "Неизвестный") + " не прошёл.");
+        }
+      }
 
+      alert("Всего зашло в клуб: " + passedCount);
+    } else {
+      alert("Ошибка: вы не ввели число людей или оно неверное!");
+    }
+  </script>
+</body>
+</html>
