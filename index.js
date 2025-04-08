@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <title>Банкомат и Клуб</title>
-</head>
-<body>
-  <script>
     // Первая задача — Банкомат
     const userData = {
       username: "Alex",
@@ -62,6 +54,3 @@
     } else {
       alert("Ошибка: вы не ввели число людей или оно неверное!");
     }
-  </script>
-</body>
-</html>
